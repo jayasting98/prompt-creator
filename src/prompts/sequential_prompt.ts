@@ -4,18 +4,20 @@ import {ComponentCollection, SuperComponent, SuperPrompt} from './super_prompt';
 /**
  * This is a collection of components in sequential order.
  */
-export interface ComponentSequence
-  extends ComponentCollection,
-    Iterable<Component> {}
+export interface ComponentSequence<T extends Component>
+  extends ComponentCollection<T>,
+    Iterable<T> {}
 
 /**
  * This is a component containing components in sequential order.
  */
-export interface SequentialComponent
-  extends SuperComponent,
-    ComponentSequence {}
+export interface SequentialComponent<T extends Component>
+  extends SuperComponent<T>,
+    ComponentSequence<T> {}
 
 /**
  * This is a prompt containing components in sequential order.
  */
-export interface SequentialPrompt extends SuperPrompt, SequentialComponent {}
+export interface SequentialPrompt<T extends Component>
+  extends SuperPrompt<T>,
+    SequentialComponent<T> {}

@@ -4,7 +4,7 @@ import {SequentialPrompt} from './sequential_prompt';
 /**
  * This is a prompt which consists of an array of components.
  */
-export class ArrayPrompt implements SequentialPrompt {
+export class ArrayPrompt implements SequentialPrompt<Component> {
   protected components: Component[];
 
   constructor() {
