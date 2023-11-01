@@ -1,4 +1,4 @@
-import {Component} from '../prompt_creators/prompt_creator';
+import {Component} from '../prompts/prompt';
 
 export class ParagraphComponent implements Component {
   constructor(protected paragraph: string) {}
