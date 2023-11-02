@@ -43,6 +43,32 @@ describe('ArrayPrompt', () => {
     });
   });
 
+  describe('getSize', () => {
+    test('with no components; the size is 0', () => {
+      const expectedSize = 0;
+      expect(prompt.getSize()).toEqual(expectedSize);
+    });
+
+    test('with one component; the size is 1', () => {
+      const componentContent = 'This is a component.';
+      const component = new TextComponent(componentContent);
+      prompt.addComponent(component);
+      const expectedSize = 1;
+      expect(prompt.getSize()).toEqual(expectedSize);
+    });
+
+    test('with more than one component; the size is exactly the number of components', () => {
+      const component1Content = 'This is a component.';
+      const component1 = new TextComponent(component1Content);
+      prompt.addComponent(component1);
+      const component2Content = 'This is another component.';
+      const component2 = new TextComponent(component2Content);
+      prompt.addComponent(component2);
+      const expectedSize = 2;
+      expect(prompt.getSize()).toEqual(expectedSize);
+    });
+  });
+
   describe('[Symbol.iterator]', () => {
     function assertEqualComponents(
       prompt: ArrayPrompt,

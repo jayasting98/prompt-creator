@@ -1,20 +1,23 @@
-import {SuperComponent} from '../prompts/super_prompt';
+import {SequentialComponent} from '../prompts/sequential_prompt';
 import {TextComponent} from './text_component';
 
 /**
  * This represents an XML element.
  */
 export class XmlElementComponent
-  implements SuperComponent<XmlElementComponent | TextComponent>
+  implements SequentialComponent<XmlElementComponent | TextComponent>
 {
   protected components: (XmlElementComponent | TextComponent)[];
+  protected size: number;
 
   constructor(protected tag: string) {
     this.components = [];
+    this.size = 0;
   }
 
   addComponent(component: XmlElementComponent | TextComponent): void {
     this.components.push(component);
+    this.size++;
   }
 
   getContent(): string {
@@ -29,5 +32,14 @@ export class XmlElementComponent
       content = `<${this.tag}>\n${elementContent}\n</${this.tag}>\n`;
     }
     return content;
+  }
+
+  getSize(): number {
+    return this.size;
+  }
+
+  [Symbol.iterator](): Iterator<XmlElementComponent | TextComponent> {
+    const iterator = this.components[Symbol.iterator]();
+    return iterator;
   }
 }

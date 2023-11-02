@@ -5,8 +5,14 @@ import {ComponentCollection, SuperComponent, SuperPrompt} from './super_prompt';
  * This is a collection of components in sequential order.
  */
 export interface ComponentSequence<T extends Component>
-  extends ComponentCollection<T>,
-    Iterable<T> {}
+  extends ComponentCollection<T> {
+  /**
+   * Includes a component into the collection.
+   * The component is added to the end.
+   * @param component The component to be included.
+   */
+  addComponent(component: T): void;
+}
 
 /**
  * This is a component containing components in sequential order.

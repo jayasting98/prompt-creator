@@ -3,12 +3,12 @@ import {Component, Prompt} from './prompt';
 /**
  * This contains components.
  */
-export interface ComponentCollection<T extends Component> {
+export interface ComponentCollection<T extends Component, U = T>
+  extends Iterable<U> {
   /**
-   * Includes a component into the collection.
-   * @param component The component to be included.
+   * Obtains the number of components in the collection.
    */
-  addComponent(component: T): void;
+  getSize(): number;
 }
 
 /**
