@@ -6,9 +6,11 @@ import {SequentialPrompt} from './sequential_prompt';
  */
 export class ArrayPrompt implements SequentialPrompt<Component> {
   protected components: Component[];
+  protected size: number;
 
   constructor() {
     this.components = [];
+    this.size = 0;
   }
 
   getContent(): string {
@@ -21,6 +23,11 @@ export class ArrayPrompt implements SequentialPrompt<Component> {
 
   addComponent(component: Component): void {
     this.components.push(component);
+    this.size++;
+  }
+
+  getSize(): number {
+    return this.size;
   }
 
   [Symbol.iterator](): Iterator<Component> {
